@@ -11,6 +11,7 @@ module "example" {
 	 # Optional variables
 	 dc  = ""
 	 ovf_file  = ""
+	 script_path_ansible  = ""
 	 user-data  = ""
 	 vmname  = "CIPHERTUST"
 	 vs_cluster  = ""
@@ -24,6 +25,8 @@ module "example" {
 
 | Name | Type |
 |------|------|
+| [null_resource.change_initial_password](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
+| [null_resource.inject_license](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
 | [vsphere_virtual_machine.ciphertrust](https://registry.terraform.io/providers/hashicorp/vsphere/latest/docs/resources/virtual_machine) | resource |
 | [vsphere_compute_cluster.cluster](https://registry.terraform.io/providers/hashicorp/vsphere/latest/docs/data-sources/compute_cluster) | data source |
 | [vsphere_datacenter.dc](https://registry.terraform.io/providers/hashicorp/vsphere/latest/docs/data-sources/datacenter) | data source |
@@ -37,6 +40,7 @@ module "example" {
 |------|-------------|------|---------|:--------:|
 | <a name="input_dc"></a> [dc](#input\_dc) | vSphere Datastore name | `string` | `""` | no |
 | <a name="input_ovf_file"></a> [ovf\_file](#input\_ovf\_file) | vSphere GuestOS Remote URL OVF | `string` | `""` | no |
+| <a name="input_script_path_ansible"></a> [script\_path\_ansible](#input\_script\_path\_ansible) | this is script for ansible | `string` | `""` | no |
 | <a name="input_user-data"></a> [user-data](#input\_user-data) | This is define for cloud init file | `string` | `""` | no |
 | <a name="input_vmname"></a> [vmname](#input\_vmname) | This is define for environment vm will build | `string` | `"CIPHERTUST"` | no |
 | <a name="input_vs_cluster"></a> [vs\_cluster](#input\_vs\_cluster) | vSphere Cluster name | `string` | `""` | no |
