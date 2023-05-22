@@ -1,0 +1,43 @@
+#cloud-config
+keysecure:
+  default-ca:
+    CN: CLOUD-INIT ROOT CA
+    emails:
+      - administrator@bank.local
+    names:
+      - C: ID  
+        ST: DKI Jakarta
+        L: Jakarta
+        O: IT Security Team
+        OU: Digital Security
+    dns-names:
+      - ciphertrust.bank.local
+    ip-addresses:
+      - 192.168.234.98
+  default-server-cert:
+    CN: Cloud Init Server 
+    emails: 
+      - administrator@bank.local
+    names:
+      - C: ID
+        ST: DKI Jakarta
+        L: Jakarta
+        O: IT Security Team
+        OU: Digital Security
+    dns-names:
+      -  ciphertrust.bank.local
+    ip-addresses:
+      - 192.168.234.98
+  netcfg:
+    iface:
+      name: ens160
+      type: static
+      address: 192.168.234.98
+      netmask: 255.255.255.128
+      gateway: 192.168.234.126
+      dns1: 192.168.234.90
+diskenc:
+  encrypt: true
+ssh_authorized_keys:
+  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC0dOkGs29ZESkUQ7V0Rt0lvjUQ9d06WddUyxSevwOaceC38HCbZD+movZFGxVzf3cCxs+8JJTh27LKwROIAlx48JflNt8rKa6AAANzP6HihA6Q4X8NencLqAfoN6yAkqt6ssbmEKUqpmwjkF9LfOvwkH4pgjs5WsX1BqOoR7v7+ZWNMa28/l2kqHCdbBjLh7E0jSQDU44Wh/uZdsZHvfBLUUlMThujhbdD+xEwgtqMLAPTjsC0UzkJovyVAvWuHnX5jf5JlgAo5SsURVVPzCc0GVcfxey2X/qpJGkd5G0nl5x5s6EatVSI4LREdFgh3WrSU8yqaIMkTYdnniNZ0ZJ0wLC7Me8mmUFyoj50klZCvdyNage8JIT0pzRBmHaGSWCbj8pTYS/CtnJiYA9zweJo/CZYN/CiE8yc+Xh4Mi0Yry2deEdyt2g/STKSnzI7NqxaGfVjgyYYX7EpvAIe/vHQdGmZmDMMddJAE4I7JMPYgS/e3+Big9giwZcNhpYDnDs= noni_princess@Nonis-MacBook-Air.local
+  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCojKBr1s7B/sZkrhnCnjFiaNrmMt7ZYTqC90PaUC7TZWvfU6yd2Oe7sJ5QKBeN0ODXawuDAg3hKhPobupz7E3OrnuipjZq0AgilybPFaJjNfeVp0oJg4ivU4URKRJMlgOq6CCAevSJRu2sFEKMRGJ5E61nPN4jFXX1XWfHSP+w4fbZa5l8Otlv9gCvIeguooQwx83tIuVqTaS1cUrCFK5oYZv2MIH6mkQPhSp7MhMZM/rUrNiWump6ikb8urGCgTAXpUVuuB+eZxmzbYrA818gd08nAyZsPwbT4bRpApKlUjlLXM5i0Mb2O34MdFv2+BXPM9bJqbxiPogeCJ0fPF0efER1THx2WETfnP/2vX5MENGjMr69zxuaLqNb+EbUOrRV5ydPDcv52A8Uvr9HUw7GgH0wmCJi5S6g/p+ObpFoLXRq+imBCMa7gilimYxK9Zzg0lcEvOWkp4tXF0V8W4FeVkT0mgblo17D9gokYARh+OSchfabKIhFukFHfWU11zE= devops@PUJI-APP01
