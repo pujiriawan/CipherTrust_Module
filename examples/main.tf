@@ -39,7 +39,9 @@ variable "ciphertrust_ha_static_maps" {
         vmname = "CIPHERTRUST"
         vs_network_data = "VM Network"
         user-data = "userdata-CTM01.yaml"
-        script_path_ansible = "/home/devops/Ciphertrust_Manager/Configuration-Management"
+        #location of ansible playbook in local computer or ansible controller  machine
+        #ansible.cfg and inventory file must be already configured
+        script_path_ansible = "/home/devops/"
       }
       #"CIPHERTRUST" = {
       #  vmname = "CIPHERTRUST"
@@ -51,7 +53,7 @@ variable "ciphertrust_ha_static_maps" {
 }
 
 module "ciphertrust" {
-  source = "https://github.com/pujiriawan/CipherTrust_Module/"
+  source = "git::https://github.com/pujiriawan/CipherTrust_Module"
   for_each = var.ciphertrust_ha_static_maps
   vmname = each.value.vmname
   vs_network_data = each.value.vs_network_data
@@ -63,4 +65,3 @@ module "ciphertrust" {
   vs_host_cluster = "192.168.230.12"
   ovf_file = "http://192.168.234.90/kickstart/Thales-Ciphertrust-2-10.ovf"
 }
-
