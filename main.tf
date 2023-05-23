@@ -90,15 +90,16 @@ resource "null_resource" "change_initial_password" {
     depends_on = [vsphere_virtual_machine.ciphertrust]
     provisioner "local-exec" {
     working_dir = var.script_path_ansible
-    command = "ansible-playbook resetInitialPassword.yml"
+    command = "sleep 600; ansible-playbook resetInitialPassword.yml"
     }
   }
 
 
 resource "null_resource" "inject_license" {
-    depends_on = [vsphere_virtual_machine.change_initial_password]
+    depends_on = [null_resource.change_initial_password]
     provisioner "local-exec" {
     working_dir = var.script_path_ansible
-    command = "ansible-playbook ciphertrust_inject_license.yml"
+    #command = "ansible-playbook ciphertrust_inject_license.yml"
+    command = "echo 'Succesfully Deploy Ciphertrust Manager'"
     }
   }
