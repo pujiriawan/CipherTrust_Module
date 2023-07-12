@@ -46,11 +46,11 @@ variable "vs_network_data" {
     default = "VM Network"
 }
 
-#variable "user-data" {
-#    type = string
-#    description = "This is define for cloud init file"
-#    default = ""
-#}
+variable "user-data" {
+    type = string
+    description = "This is define for cloud init file"
+    default = ""
+}
 
 variable "script_path_ansible" {
     type = string

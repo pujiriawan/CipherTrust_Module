@@ -64,19 +64,14 @@ resource "vsphere_virtual_machine" "ciphertrust" {
     client_device = true
   }
 
-  #vapp {
-  #  properties = {
-  #    user-data = base64encode(file("${path.module}/cloud-init/${var.user-data}"))
-  #  }
-  #}
   vapp {
     properties = {
-      user-data = base64encode(local.cm-userdata)
+      user-data = var.user-data
     }
   }
+
   extra_config = {
-   #"guestinfo.userdata"          =  base64encode(file("${path.module}/cloud-init/${var.user-data}"))
-   "guestinfo.userdata"          =  base64encode(local.cm-userdata)
+   "guestinfo.userdata"          =  var.user-data
    "guestinfo.userdata.encoding" = "base64"
  }
 
