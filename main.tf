@@ -86,9 +86,30 @@ resource "vsphere_virtual_machine" "ciphertrust" {
   }
 }
 
+
+# Generate Ciphertrust Connection node for ansible
+resource "local_file" "connection_node" {
+depends_on = [vsphere_virtual_machine.ciphertrust]
+filename = var.file_path
+content = <<EOF
+this_node_address: ${vsphere_virtual_machine.ciphertrust.*.default_ip_address}
+this_node_private_ip: ${vsphere_virtual_machine.ciphertrust.*.default_ip_address}
+this_node_username: admin
+this_default_password: admin
+this_node_password: P@ssw0rd.1!
+this_node_connection_string:
+  server_ip: "{{ this_node_address }}"
+  server_private_ip: "{{ this_node_private_ip }}"
+  server_port: 5432
+  user: "{{ this_node_username }}"
+  password: "{{ this_node_password }}"
+  verify: False
+EOF
+}
+
 # This is ansible playbook will call ansible collection create by Thales Team https://github.com/thalescpl-io/CDSP_Orchestration
 resource "null_resource" "change_initial_password" {
-    depends_on = [vsphere_virtual_machine.ciphertrust]
+    depends_on = [local_file.connection_node]
     provisioner "local-exec" {
     working_dir = var.script_path_ansible
     command = "sleep 600; ansible-playbook resetInitialPassword.yml"

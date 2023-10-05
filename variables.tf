@@ -57,3 +57,9 @@ variable "script_path_ansible" {
     description = "this is script for ansible"
     default = ""
 }
+
+variable "file_path" {
+  type = string
+    description = "location of file path connection setting for cm"
+    default = ""
+}
