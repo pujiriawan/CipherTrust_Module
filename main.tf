@@ -37,7 +37,7 @@ data "vsphere_ovf_vm_template" "ovf" {
 }
 
 data "template_file" "connection_node_ciphertrust" {
-  template = "${file("templates/connection_node_ciphertrust.tpl")}"
+  template = "${file("${path.module}/templates/connection_node_ciphertrust.tpl")}"
 }
 
 resource "vsphere_virtual_machine" "ciphertrust" {
