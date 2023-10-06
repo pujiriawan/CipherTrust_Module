@@ -63,3 +63,9 @@ variable "file_path" {
     description = "location of file path connection setting for cm"
     default = ""
 }
+
+variable "vm_ip_address" {
+    type = string
+    description = "this is use to exposed ip address of cm"
+    default = ""
+}
