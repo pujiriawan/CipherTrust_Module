@@ -1,5 +1,5 @@
-this_node_address: ${vm_ip_address}
-this_node_private_ip: ${vm_ip_address}
+this_node_address: ${ip_address}
+this_node_private_ip: ${ip_address}
 this_node_username: admin
 this_default_password: admin
 this_node_password: P@ssw0rd.1!

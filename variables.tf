@@ -64,7 +64,7 @@ variable "file_path" {
     default = ""
 }
 
-variable "vm_ip_address" {
+variable "ip_address" {
     type = string
     description = "this is use to exposed ip address of cm"
     default = ""
