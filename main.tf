@@ -44,7 +44,7 @@ data "template_file" "connection_node_ciphertrust" {
 }
 
 data "template_file" "user_data" {
-  template = base64encode(templatefile("${path.module}/templates/user-data.tpl", {}))
+  template = "${file("${path.module}/templates/user-data.tpl")}"
   vars = {
     ip_address = var.ip_address
   }
