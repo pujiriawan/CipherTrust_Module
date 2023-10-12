@@ -43,6 +43,13 @@ data "template_file" "connection_node_ciphertrust" {
   }
 }
 
+data "template_file" "user_data" {
+  template = base64encode(templatefile("${path.module}/templates/user-data.tpl", {}))
+  vars = {
+    ip_address = var.ip_address
+  }
+}
+
 resource "vsphere_virtual_machine" "ciphertrust" {
   datacenter_id = data.vsphere_datacenter.dc.id
   name = var.vmname
@@ -73,12 +80,12 @@ resource "vsphere_virtual_machine" "ciphertrust" {
 
   vapp {
     properties = {
-      user-data = var.user-data
+      user-data = "${base64encode(data.template_file.connection_node_ciphertrust.rendered)}"
     }
   }
 
   extra_config = {
-   "guestinfo.userdata"          =  var.user-data
+   "guestinfo.userdata"          = "${base64encode(data.template_file.connection_node_ciphertrust.rendered)}"
    "guestinfo.userdata.encoding" = "base64"
  }
 
