@@ -80,12 +80,12 @@ resource "vsphere_virtual_machine" "ciphertrust" {
 
   vapp {
     properties = {
-      user-data = "${base64encode(data.template_file.connection_node_ciphertrust.rendered)}"
+      user-data = "${base64encode(data.template_file.user_data.rendered)}"
     }
   }
 
   extra_config = {
-   "guestinfo.userdata"          = "${base64encode(data.template_file.connection_node_ciphertrust.rendered)}"
+   "guestinfo.userdata"          = "${base64encode(data.template_file.user_data.rendered)}"
    "guestinfo.userdata.encoding" = "base64"
  }
 
